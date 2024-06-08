@@ -6,11 +6,16 @@ import { MenteeModule } from "./mentee/mentee.module";
 import { MentorModule } from "./mentor/mentor.module";
 import { DonationModule } from "./donation/donation.module";
 import { RaffleModule } from "./raffle/raffle.module";
-import { ContactModule } from "./contact/contact.module";
 import { LearningModuleModule } from "./learningModule/learningModule.module";
+import { ContactModule } from "./contact/contact.module";
 import { WebPageModule } from "./webPage/webPage.module";
 import { TicketModule } from "./ticket/ticket.module";
 import { CheckInModule } from "./checkIn/checkIn.module";
+import { BoardMemberModule } from "./boardMember/boardMember.module";
+import { PollModule } from "./poll/poll.module";
+import { BoardMeetingModule } from "./boardMeeting/boardMeeting.module";
+import { GeneralMeetingModule } from "./generalMeeting/generalMeeting.module";
+import { VoteModule } from "./vote/vote.module";
 import { HealthModule } from "./health/health.module";
 import { PrismaModule } from "./prisma/prisma.module";
 import { SecretsManagerModule } from "./providers/secrets/secretsManager.module";
@@ -30,11 +35,16 @@ import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
     MentorModule,
     DonationModule,
     RaffleModule,
-    ContactModule,
     LearningModuleModule,
+    ContactModule,
     WebPageModule,
     TicketModule,
     CheckInModule,
+    BoardMemberModule,
+    PollModule,
+    BoardMeetingModule,
+    GeneralMeetingModule,
+    VoteModule,
     HealthModule,
     PrismaModule,
     SecretsManagerModule,

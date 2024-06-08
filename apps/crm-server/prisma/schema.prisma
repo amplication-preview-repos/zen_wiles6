@@ -86,6 +86,15 @@ model Raffle {
   updatedAt   DateTime  @updatedAt
 }
 
+model LearningModule {
+  content   String?
+  createdAt DateTime @default(now())
+  createdBy String?
+  id        String   @id @default(cuid())
+  title     String?
+  updatedAt DateTime @updatedAt
+}
+
 model Contact {
   createdAt DateTime @default(now())
   email     String?
@@ -93,15 +102,6 @@ model Contact {
   name      String?
   notes     String?
   phone     String?
-  updatedAt DateTime @updatedAt
-}
-
-model LearningModule {
-  content   String?
-  createdAt DateTime @default(now())
-  createdBy String?
-  id        String   @id @default(cuid())
-  title     String?
   updatedAt DateTime @updatedAt
 }
 
@@ -136,6 +136,70 @@ model CheckIn {
   updatedAt   DateTime  @updatedAt
 }
 
+model BoardMember {
+  createdAt DateTime  @default(now())
+  email     String?
+  id        String    @id @default(cuid())
+  joinDate  DateTime?
+  name      String?
+  phone     String?
+  role      String?
+  updatedAt DateTime  @updatedAt
+}
+
+model Poll {
+  createdAt DateTime  @default(now())
+  endTime   DateTime?
+  id        String    @id @default(cuid())
+  meeting   String?
+  options   Json?
+  question  String?
+  startTime DateTime?
+  updatedAt DateTime  @updatedAt
+  votes     Vote[]
+}
+
+model BoardMeeting {
+  agenda      String?
+  createdAt   DateTime  @default(now())
+  description String?
+  endTime     DateTime?
+  id          String    @id @default(cuid())
+  location    String?
+  minutes     String?
+  startTime   DateTime?
+  title       String?
+  updatedAt   DateTime  @updatedAt
+}
+
+model GeneralMeeting {
+  agenda      String?
+  createdAt   DateTime                       @default(now())
+  description String?
+  endTime     DateTime?
+  id          String                         @id @default(cuid())
+  location    String?
+  meetingType EnumGeneralMeetingMeetingType?
+  minutes     String?
+  startTime   DateTime?
+  title       String?
+  updatedAt   DateTime                       @updatedAt
+}
+
+model Vote {
+  createdAt      DateTime @default(now())
+  id             String   @id @default(cuid())
+  poll           Poll?    @relation(fields: [pollId], references: [id])
+  pollId         String?
+  selectedOption String?
+  updatedAt      DateTime @updatedAt
+  voter          String?
+}
+
 enum EnumMemberMentorshipStatus {
+  Option1
+}
+
+enum EnumGeneralMeetingMeetingType {
   Option1
 }

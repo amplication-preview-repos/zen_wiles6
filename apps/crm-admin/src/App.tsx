@@ -33,14 +33,14 @@ import { RaffleList } from "./raffle/RaffleList";
 import { RaffleCreate } from "./raffle/RaffleCreate";
 import { RaffleEdit } from "./raffle/RaffleEdit";
 import { RaffleShow } from "./raffle/RaffleShow";
-import { ContactList } from "./contact/ContactList";
-import { ContactCreate } from "./contact/ContactCreate";
-import { ContactEdit } from "./contact/ContactEdit";
-import { ContactShow } from "./contact/ContactShow";
 import { LearningModuleList } from "./learningModule/LearningModuleList";
 import { LearningModuleCreate } from "./learningModule/LearningModuleCreate";
 import { LearningModuleEdit } from "./learningModule/LearningModuleEdit";
 import { LearningModuleShow } from "./learningModule/LearningModuleShow";
+import { ContactList } from "./contact/ContactList";
+import { ContactCreate } from "./contact/ContactCreate";
+import { ContactEdit } from "./contact/ContactEdit";
+import { ContactShow } from "./contact/ContactShow";
 import { WebPageList } from "./webPage/WebPageList";
 import { WebPageCreate } from "./webPage/WebPageCreate";
 import { WebPageEdit } from "./webPage/WebPageEdit";
@@ -53,6 +53,26 @@ import { CheckInList } from "./checkIn/CheckInList";
 import { CheckInCreate } from "./checkIn/CheckInCreate";
 import { CheckInEdit } from "./checkIn/CheckInEdit";
 import { CheckInShow } from "./checkIn/CheckInShow";
+import { BoardMemberList } from "./boardMember/BoardMemberList";
+import { BoardMemberCreate } from "./boardMember/BoardMemberCreate";
+import { BoardMemberEdit } from "./boardMember/BoardMemberEdit";
+import { BoardMemberShow } from "./boardMember/BoardMemberShow";
+import { PollList } from "./poll/PollList";
+import { PollCreate } from "./poll/PollCreate";
+import { PollEdit } from "./poll/PollEdit";
+import { PollShow } from "./poll/PollShow";
+import { BoardMeetingList } from "./boardMeeting/BoardMeetingList";
+import { BoardMeetingCreate } from "./boardMeeting/BoardMeetingCreate";
+import { BoardMeetingEdit } from "./boardMeeting/BoardMeetingEdit";
+import { BoardMeetingShow } from "./boardMeeting/BoardMeetingShow";
+import { GeneralMeetingList } from "./generalMeeting/GeneralMeetingList";
+import { GeneralMeetingCreate } from "./generalMeeting/GeneralMeetingCreate";
+import { GeneralMeetingEdit } from "./generalMeeting/GeneralMeetingEdit";
+import { GeneralMeetingShow } from "./generalMeeting/GeneralMeetingShow";
+import { VoteList } from "./vote/VoteList";
+import { VoteCreate } from "./vote/VoteCreate";
+import { VoteEdit } from "./vote/VoteEdit";
+import { VoteShow } from "./vote/VoteShow";
 import { jwtAuthProvider } from "./auth-provider/ra-auth-jwt";
 
 const App = (): React.ReactElement => {
@@ -129,18 +149,18 @@ const App = (): React.ReactElement => {
           show={RaffleShow}
         />
         <Resource
-          name="Contact"
-          list={ContactList}
-          edit={ContactEdit}
-          create={ContactCreate}
-          show={ContactShow}
-        />
-        <Resource
           name="LearningModule"
           list={LearningModuleList}
           edit={LearningModuleEdit}
           create={LearningModuleCreate}
           show={LearningModuleShow}
+        />
+        <Resource
+          name="Contact"
+          list={ContactList}
+          edit={ContactEdit}
+          create={ContactCreate}
+          show={ContactShow}
         />
         <Resource
           name="WebPage"
@@ -162,6 +182,41 @@ const App = (): React.ReactElement => {
           edit={CheckInEdit}
           create={CheckInCreate}
           show={CheckInShow}
+        />
+        <Resource
+          name="BoardMember"
+          list={BoardMemberList}
+          edit={BoardMemberEdit}
+          create={BoardMemberCreate}
+          show={BoardMemberShow}
+        />
+        <Resource
+          name="Poll"
+          list={PollList}
+          edit={PollEdit}
+          create={PollCreate}
+          show={PollShow}
+        />
+        <Resource
+          name="BoardMeeting"
+          list={BoardMeetingList}
+          edit={BoardMeetingEdit}
+          create={BoardMeetingCreate}
+          show={BoardMeetingShow}
+        />
+        <Resource
+          name="GeneralMeeting"
+          list={GeneralMeetingList}
+          edit={GeneralMeetingEdit}
+          create={GeneralMeetingCreate}
+          show={GeneralMeetingShow}
+        />
+        <Resource
+          name="Vote"
+          list={VoteList}
+          edit={VoteEdit}
+          create={VoteCreate}
+          show={VoteShow}
         />
       </Admin>
     </div>
