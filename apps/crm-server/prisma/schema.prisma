@@ -1,0 +1,205 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model MembershipTier {
+  createdAt   DateTime @default(now())
+  description String?
+  fee         Float?
+  id          String   @id @default(cuid())
+  members     Member[]
+  tierName    String?
+  updatedAt   DateTime @updatedAt
+}
+
+model Member {
+  address          String?
+  checkIns         CheckIn[]
+  createdAt        DateTime                    @default(now())
+  email            String?
+  id               String                      @id @default(cuid())
+  membershipTier   MembershipTier?             @relation(fields: [membershipTierId], references: [id])
+  membershipTierId String?
+  mentees          Mentee[]
+  mentors          Mentor[]
+  mentorshipStatus EnumMemberMentorshipStatus?
+  name             String?
+  phone            String?
+  tickets          Ticket[]
+  updatedAt        DateTime                    @updatedAt
+}
+
+model Event {
+  checkIns     CheckIn[]
+  createdAt    DateTime  @default(now())
+  description  String?
+  endTime      DateTime?
+  id           String    @id @default(cuid())
+  location     String?
+  name         String?
+  startTime    DateTime?
+  ticketPrice  Float?
+  tickets      Ticket[]
+  tieredPrices Json?
+  updatedAt    DateTime  @updatedAt
+}
+
+model Mentee {
+  assignedMentor String?
+  createdAt      DateTime @default(now())
+  id             String   @id @default(cuid())
+  member         Member?  @relation(fields: [memberId], references: [id])
+  memberId       String?
+  updatedAt      DateTime @updatedAt
+}
+
+model Mentor {
+  active         Boolean?
+  createdAt      DateTime @default(now())
+  id             String   @id @default(cuid())
+  member         Member?  @relation(fields: [memberId], references: [id])
+  memberId       String?
+  specialization String?
+  updatedAt      DateTime @updatedAt
+}
+
+model Donation {
+  amount       Float?
+  createdAt    DateTime  @default(now())
+  donationDate DateTime?
+  donor        String?
+  id           String    @id @default(cuid())
+  updatedAt    DateTime  @updatedAt
+}
+
+model Raffle {
+  createdAt   DateTime  @default(now())
+  description String?
+  drawDate    DateTime?
+  id          String    @id @default(cuid())
+  title       String?
+  updatedAt   DateTime  @updatedAt
+}
+
+model LearningModule {
+  content   String?
+  createdAt DateTime @default(now())
+  createdBy String?
+  id        String   @id @default(cuid())
+  title     String?
+  updatedAt DateTime @updatedAt
+}
+
+model Contact {
+  createdAt DateTime @default(now())
+  email     String?
+  id        String   @id @default(cuid())
+  name      String?
+  notes     String?
+  phone     String?
+  updatedAt DateTime @updatedAt
+}
+
+model WebPage {
+  content   String?
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  title     String?
+  updatedAt DateTime @updatedAt
+}
+
+model Ticket {
+  createdAt DateTime  @default(now())
+  event     Event?    @relation(fields: [eventId], references: [id])
+  eventId   String?
+  id        String    @id @default(cuid())
+  issuedAt  DateTime?
+  member    Member?   @relation(fields: [memberId], references: [id])
+  memberId  String?
+  price     Float?
+  updatedAt DateTime  @updatedAt
+}
+
+model CheckIn {
+  checkInTime DateTime?
+  createdAt   DateTime  @default(now())
+  event       Event?    @relation(fields: [eventId], references: [id])
+  eventId     String?
+  id          String    @id @default(cuid())
+  member      Member?   @relation(fields: [memberId], references: [id])
+  memberId    String?
+  updatedAt   DateTime  @updatedAt
+}
+
+model BoardMember {
+  createdAt DateTime  @default(now())
+  email     String?
+  id        String    @id @default(cuid())
+  joinDate  DateTime?
+  name      String?
+  phone     String?
+  role      String?
+  updatedAt DateTime  @updatedAt
+}
+
+model Poll {
+  createdAt DateTime  @default(now())
+  endTime   DateTime?
+  id        String    @id @default(cuid())
+  meeting   String?
+  options   Json?
+  question  String?
+  startTime DateTime?
+  updatedAt DateTime  @updatedAt
+  votes     Vote[]
+}
+
+model BoardMeeting {
+  agenda      String?
+  createdAt   DateTime  @default(now())
+  description String?
+  endTime     DateTime?
+  id          String    @id @default(cuid())
+  location    String?
+  minutes     String?
+  startTime   DateTime?
+  title       String?
+  updatedAt   DateTime  @updatedAt
+}
+
+model GeneralMeeting {
+  agenda      String?
+  createdAt   DateTime                       @default(now())
+  description String?
+  endTime     DateTime?
+  id          String                         @id @default(cuid())
+  location    String?
+  meetingType EnumGeneralMeetingMeetingType?
+  minutes     String?
+  startTime   DateTime?
+  title       String?
+  updatedAt   DateTime                       @updatedAt
+}
+
+model Vote {
+  createdAt      DateTime @default(now())
+  id             String   @id @default(cuid())
+  poll           Poll?    @relation(fields: [pollId], references: [id])
+  pollId         String?
+  selectedOption String?
+  updatedAt      DateTime @updatedAt
+  voter          String?
+}
+
+enum EnumMemberMentorshipStatus {
+  Option1
+}
+
+enum EnumGeneralMeetingMeetingType {
+  Option1
+}
